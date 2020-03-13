@@ -1,3 +1,4 @@
+
 package paquete1;
 
 import java.io.BufferedReader;
@@ -25,7 +26,12 @@ public class main {
         int codp;
         String pobl;
         String pais;
-        
+        int salir=0;
+        String nom_prod;
+        int cantidad;
+        String destin;
+        int contador_pedidos=0;
+        int contador_clientes=0;
         BufferedReader reader =
         new BufferedReader(new InputStreamReader(System.in));
         // TODO Auto-generated method stub
@@ -41,10 +47,10 @@ public class main {
         switch(n) {
             case 1:
                 
-                System.out.println("C�digo");
+                System.out.println("C�digo:");
                 
                 cod = Integer.parseInt(reader.readLine());
-                System.out.println("Nombre");
+                System.out.println("Nombre:");
                 
                 nom = reader.readLine();
                 System.out.println("Descripci�n");
@@ -52,7 +58,6 @@ public class main {
                 desc = reader.readLine();
                 
                 System.out.println("Stock");
-                
                 
                 stk = Integer.parseInt(reader.readLine());
                 System.out.println("Pasillo");
@@ -121,10 +126,10 @@ public class main {
                 
                 pais = reader.readLine();
                 
+                clientes[] clients=new clientes[10];
                 direccion dir;
-                clientes client;
                 dir=new direccion(calle,num,codp,pobl,pais);
-                client=new clientes(nom,apell,mail,tlf,dir);
+                clients[] = new clientes(nom,apell,mail,tlf,dir);
                 //client=new producto(cod, nom,desc,stk,loc,pendientes);
                 
                 
@@ -132,12 +137,74 @@ public class main {
                 break;
             case 3:
                 
+                do{
+                System.out.println("Para realizar pedido pulse 0 sino introduzca otro numero");
+                     salir = Integer.parseInt(reader.readLine());
+                    if (salir!=0){
+                          System.out.println("hasta la proxima");
+                        break;
+                    }
+                    System.out.println("introduzca el nombre del producto:");
+                    nom_prod = reader.readLine();
+                    System.out.println("cantidad:");
+                    cantidad = reader.readLine();
+                    
+                     System.out.println("introduzca los datos de la direccion de entrega:");
+                    System.out.println("Calle:");
+                    calle = reader.readLine();
+                    
+                    System.out.println("Numero:");
+                    num = Integer.parseInt(reader.readLine());
+        
+                    System.out.println("Codigo postal");
+                    codp = Integer.parseInt(reader.readLine());
+                    
+                    System.out.println("Poblacion");
+                    pobl = reader.readLine();
+
+                    System.out.println("Pa�s");
+                    pais = reader.readLine();
                 
                 
-              
+                System.out.println("Telefono");
+                tlf = reader.readLine();
+                
+                System.out.println("Calle");
+                
+                
+                calle = reader.readLine();
+                
+                System.out.println("Numero");
+                num = Integer.parseInt(reader.readLine());
+ 
+                System.out.println("Codigo postal");
+                
+                codp = Integer.parseInt(reader.readLine());
+                System.out.println("Poblacion");
+                
+                pobl = reader.readLine();
+                 
+                System.out.println("Pais");
+                
+                pais = reader.readLine();
+                
+                    System.out.println("destinatario:");
+                destin = reader.readLine();
+                    System.out.println("fecha de entrega:");
+                    System.out.println("Se entergara una semana despues del pago...");
+                    System.out.println("pedido realizado");
+                    
+                    direccion[] direc = new direccion[10];
+                    clientes[] clients=new clientes[10];
+                direc=new direccion(calle,num,codp,pobl,pais);
+                clients=new clientes(nom,apell,mail,tlf,dir);
+                //client=new producto(cod, nom,desc,stk,loc,pendientes);
+                    contador_pedidos++;
+                }while(salir==0)
                 break;
         }
         
+        public static int
         
         
         
