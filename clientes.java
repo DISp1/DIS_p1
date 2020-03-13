@@ -1,6 +1,6 @@
-package paquete2;
+package paquete1;
 
-import paquete1.direccion;
+
 
 public class clientes {
     //declaracion de variables

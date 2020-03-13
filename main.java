@@ -4,13 +4,21 @@ package paquete1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+//declaramos las funciones encargadas de buscar en los arrays de clase producto y cliente
+public static int  buscar_producto(producto[],string n);
+public static int  buscar_cliente(clients[],string n);
 public class main {
     
     public static void main(String[] args) throws IOException{
         
+        //el programa se estructura con 5 clases ; producto cliente pedidos direccion lozalizacion.
+        //hemos creado 3 arrays uno con clientes , otro con productos y el ultimo para los
+        //pedidos,este a diferencia de los otros posee un array de productos dentro, para poder realizar pedidos con mas de un producto.
+        //todas las clases constan de su constructor parametrizado y asi es como inicializamos las variables y arrays.
         
-        
+        clientes[] clients=new clientes[10];
+        producto[] prod= new clientes[10];
+        pedidos[] pedido= new pedidos[10];
         String nom;
         int cod;
         String desc;
@@ -32,6 +40,14 @@ public class main {
         String destin;
         int contador_pedidos=0;
         int contador_clientes=0;
+        int contador_productos=0;
+        
+       
+        int num_pedido=0;
+        int num_cliente=-1;
+        int num_producto=-1;
+        
+        
         BufferedReader reader =
         new BufferedReader(new InputStreamReader(System.in));
         // TODO Auto-generated method stub
@@ -39,11 +55,12 @@ public class main {
         System.out.println("1.-Producto");
         System.out.println("2.-Cliente");
         System.out.println("3.-Pedido");
+         System.out.println("4.-Salir");
         
         int n = Integer.parseInt(reader.readLine());
         
         
-        
+        do{
         switch(n) {
             case 1:
                 
@@ -74,28 +91,24 @@ public class main {
                 System.out.println("Pendientes");
                 boolean pendientes = Boolean.parseBoolean(reader.readLine());
                 
-                
-                producto prod;
+              
                 localizacion loc;
                 loc=new localizacion(pas,est,nte);
-                prod=new producto(cod, nom,desc,stk,loc,pendientes);
-                
-                
-                
-                
-                // code block
+                prod[contador_productos]=new producto(cod, nom,desc,stk,loc,pendientes);
+                contador_productos ++;
+             
                 break;
             case 2:
                 
                 
                 
-                System.out.println("Nombre");
+                System.out.println("Introduzca Nombre:");
                 
                 nom = reader.readLine();
-                System.out.println("Apellidos");
+                System.out.println("Apellidos:");
                 
                 apell = reader.readLine();
-                System.out.println("Email");
+                System.out.println("Email:");
                 
                 mail = reader.readLine();
                 
@@ -126,108 +139,92 @@ public class main {
                 
                 pais = reader.readLine();
                 
-                clientes[] clients=new clientes[10];
-                direccion dir;
-                dir=new direccion(calle,num,codp,pobl,pais);
-                clients[] = new clientes(nom,apell,mail,tlf,dir);
-                //client=new producto(cod, nom,desc,stk,loc,pendientes);
+               
                 
-                
-                // code block
+                direccion dir=new direccion(calle,num,codp,pobl,pais);
+                clients[contador_clientes] = new clientes(nom,apell,mail,tlf,dir);
+
+                contador_clientes++;
                 break;
             case 3:
                 
+                 int contador_aux=0;
                 do{
                 System.out.println("Para realizar pedido pulse 0 sino introduzca otro numero");
                      salir = Integer.parseInt(reader.readLine());
                     if (salir!=0){
                           System.out.println("hasta la proxima");
                         break;
-                    }
+                    }while(salir==0)
+                        
                     System.out.println("introduzca el nombre del producto:");
                     nom_prod = reader.readLine();
+                    num_producto=buscar_producto(prod,nom_prod)
                     System.out.println("cantidad:");
                     cantidad = reader.readLine();
-                    
-                     System.out.println("introduzca los datos de la direccion de entrega:");
-                    System.out.println("Calle:");
-                    calle = reader.readLine();
-                    
-                    System.out.println("Numero:");
-                    num = Integer.parseInt(reader.readLine());
-        
-                    System.out.println("Codigo postal");
-                    codp = Integer.parseInt(reader.readLine());
-                    
-                    System.out.println("Poblacion");
-                    pobl = reader.readLine();
-
-                    System.out.println("Pa�s");
-                    pais = reader.readLine();
                 
+                    System.out.println("nombre del cliente /destinatario:");
+                    NoM = reader.readLine();
+                    num_cliente= buscar_cliente(clients,NoM);
                 
-                System.out.println("Telefono");
-                tlf = reader.readLine();
-                
-                System.out.println("Calle");
-                
-                
-                calle = reader.readLine();
-                
-                System.out.println("Numero");
-                num = Integer.parseInt(reader.readLine());
- 
-                System.out.println("Codigo postal");
-                
-                codp = Integer.parseInt(reader.readLine());
-                System.out.println("Poblacion");
-                
-                pobl = reader.readLine();
-                 
-                System.out.println("Pais");
-                
-                pais = reader.readLine();
-                
-                    System.out.println("destinatario:");
-                destin = reader.readLine();
+                   
                     System.out.println("fecha de entrega:");
-                    System.out.println("Se entergara una semana despues del pago...");
+                    System.out.println("Se entregara una semana despues del pago...");
                     System.out.println("pedido realizado");
                     
-                    direccion[] direc = new direccion[10];
-                    clientes[] clients=new clientes[10];
-                direc=new direccion(calle,num,codp,pobl,pais);
-                clients=new clientes(nom,apell,mail,tlf,dir);
-                //client=new producto(cod, nom,desc,stk,loc,pendientes);
-                    contador_pedidos++;
+                 
+                    pedido[contador_pedidos].productos[contador_aux]=new pedido(prod[num_producto],cantidad,clients[num_cliente].dir,clients[num_cliente].Nombre,"En una semana");
+                    contador_aux++;
                 }while(salir==0)
+                       contador_pedidos++;
+                
                 break;
+            default:
+                System.out.println("opciones validas (1-4)");
+                break;
+                
+                
         }
-        
-        public static int
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        }while(n!=4)
+       
         
         
     }
+    //estas funciones devuelven la posicion en el array de cliente y producto
+    public static int  buscar_producto(producto[],string n){
+        for(int i=0;i<10;i++){
+            if (producto[i].Nombre==n){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public static int  buscar_cliente(clients[],string n){
+        for(int i=0;i<10;i++){
+            if (clients[i].Nombre==n){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
     
 }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
