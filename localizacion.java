@@ -1,4 +1,4 @@
-package paquete2;
+package paquete1;
 
 public class localizacion {
 
