@@ -1,7 +1,4 @@
-package paquete2;
-
-import paquete1.direccion;
-import paquete1.producto;
+package paquete1;
 
 public class pedidos {
 
